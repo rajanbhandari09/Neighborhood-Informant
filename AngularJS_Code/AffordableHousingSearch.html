@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="affordableHousingService.js"></script>
+<script src="myApp.js"></script>
+<!--Bootstrap links-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Chicago Neighborhood Informant</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="#">Home</a></li>
+      <li class="active"><a href="#">Affordable Housing Data</a></li>
+      <li><a href="CrimeDataSearch.html">Crime Data</a></li>
+      <li><a href="Charts.html">Charts</a></li>
+    </ul>
+  </div>
+</nav>
+<div ng-app="myApp" ng-controller="AffordableHousingController as a" ng-init="sortType='community_area';sortReverse='false'">
+
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search Community Area" ng-model="search.community_area">
+<input type="text" class="form-control" placeholder="Search Zip Code" ng-model="search.zip_code">
+      </div>      
+    </div>
+  </form>
+
+<table class="table table-bordered table-striped" >
+	<tr><th><a href="#" ng-click="sortType = 'community_area';sortReverse = !sortReverse"><span ng-show="sortType == 'community_area' && !sortReverse" class="fa fa-caret-down"></span>
+	<span ng-show="sortType == 'community_area' && sortReverse" class="fa fa-caret-up"></span>Community Area</a></th>
+		<th>Community Area Number</th>
+		<th>Property Type</th>
+		<th>Property Name</th>
+		<th>Address</th>
+		<th>Zip Code</th>
+	</tr>
+	<tr ng-model="affordablehousingdata" ng-repeat="x in affordablehousingdata | orderBy:sortType:sortReverse | filter:search">
+		<td>{{x.community_area}}</td>
+		<td>{{x.community_area_number}}</td>
+		<td>{{x.property_type}}</td>
+		<td>{{x.property_name}}</td>
+		<td>{{x.address}}</td>
+		<td>{{x.zip_code}}</td>
+	</tr>
+
+</table> 
+</div>
+
+</body>
+</html>

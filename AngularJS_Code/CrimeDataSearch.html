@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="CrimeDataModule.js"></script>
+<script src="CrimeDataServiceModule.js"></script>
+<script src="CommunityNameToNumberConversionModule.js"></script>
+<script type="text/javascript"></script>
+<!--Bootstrap links-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<head>
+	<title></title>
+</head>
+<body ng-app="CrimeDataModule" ng-controller="searchController">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Chicago Neighborhood Informant</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="#">Home</a></li>
+      <li><a href="AffordableHousingSearch.html">Affordable Housing Data</a></li>
+      <li class="active"><a href="#">Crime Data</a></li>
+      <li><a href="Charts.html">Charts</a></li>
+    </ul>
+  </div>
+</nav>
+<form ng-submit="search()" class="input-group" ng-model="selection">
+Search Critera:	
+<select ng-model="selectedOption" required="">
+
+<option value="">Search Options</option>
+	<option value="community_area_name" >Community Area Name</option>
+	<option value="community_area_number">Community Area Number</option>
+	<option value="year">Year</option>
+	
+</select>
+
+	<input type="text" ng-model="searchParameterValue" required>
+	<input type="submit">
+</form>
+
+<br>
+<table class="table table-bordered table-striped">
+<p><b>Search results for {{selection.criteria}}: {{selection.inputValue}}</b></p>
+	<tr>
+		<th>Id</th>
+		<th>Location Description</th>
+		<th>Primary Type</th>
+		<th>Date</th>
+		<th>Year</th>
+		<th>Block</th>
+	</tr>
+	<tr ng-model="searchdata" ng-repeat="x in searchdata">
+	<td>{{x.id}}</td>
+	
+		<td>{{x.location_description}}</td>
+		<td>{{x.primary_type}}</td>
+		<td>{{x.date}}</td>
+		<td>{{x.year}}</td>
+		
+		<td>{{x.block}}</td>
+	</tr>
+
+</table>
+
+
+
+
+
+</body>
+</html>

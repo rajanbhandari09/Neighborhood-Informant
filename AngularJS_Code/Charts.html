@@ -1,0 +1,87 @@
+  <!DOCTYPE html>
+  <html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <!--Angular-Chart & Chart.js library-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+  <script src="lib/chart/angular-chart.min.js"></script>
+  <script src="DisplayChartsModule.js"></script>
+  <script src="DisplayChartsServiceModule.js"></script>
+  <script src="CommunityNameToNumberConversionModule.js"></script>
+  <!--Bootstrap links-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <head>
+  	<title></title>
+    
+  </head>
+  <body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Chicago Neighborhood Informant</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li ><a href="#">Home</a></li>
+        <li ><a href="AffordableHousingSearch.html">Affordable Housing Data</a></li>
+        <li><a href="CrimeDataSearch.html">Crime Data</a></li>
+        <li class="active"><a href="#">Charts</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+  <div class="row">
+  <h2 align="center">Community Area Crime Charts</h2>
+  </div>
+  
+  <div ng-app="DisplayChartsModule" ng-controller="chartController">
+  <div class="row"> 
+
+  <div class="col-sm-6">
+  <form ng-submit="search()" class="input-group">
+  <label>Community Area Name: </label>
+  <input type="text" ng-model="community_area_name_graph_1" required>
+    <input type="submit">
+  </form>
+
+  <canvas id="base" class="chart chart-bar"
+    chart-data="dataCrimeCountForCommunityArea" chart-labels="communityAreaLabelsYears" chart-series="series"></canvas>
+  </div>
+  <div class="col-sm-6">
+    <form ng-submit="searchCrimeCountForGivenCommunityForGivenYear()" class="input-group">
+  <label>Community Area Name: </label>
+  <input type="text" ng-model="community_area_name_graph_2" required>
+  <label>Year: </label>
+  <input type="text" ng-model="year" required>
+  <input type="submit">
+  </form>
+
+  <canvas id="base" class="chart chart-horizontal-bar"
+    chart-data="dataCrimeCountForCommunityAreaForGivenYear" chart-labels="communityAreaCrimeTypes" chart-series="series"></canvas>
+    </div>
+  	<!-- <canvas id="bar" class="chart chart-bar"
+    chart-data="dataCount" chart-labels="LabelsCommunityName" chart-series="series"></canvas>
+
+    <canvas id="base" class="chart-horizontal-bar"
+    chart-data="dataCrimeCount" chart-labels="LabelsYears" chart-series="series"></canvas> -->
+    
+  </div>
+  <div class="row">
+    <h2 align="center">Community Area Property Types</h2>
+
+  </div>
+  <div class="row">
+  <div class="col-sm-12">
+    <!-- <form ng-submit="searchCommunityAreaPropertyTypes()" class="input-group">
+  <label>Community Area Name: </label>
+  <input type="text" ng-model="community_area_name_graph_3">
+    <input type="submit">
+  </form> -->
+<canvas id="base" class="chart chart-pie" 
+    chart-data="dataPropertyCountsForPropertyTypes" chart-labels="communityAreaPropertyTypes" chart-series="series"></canvas>
+
+</div>
+  </div>
+  </div>
+  </div>
+  </body>
+  </html>
