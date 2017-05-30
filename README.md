@@ -16,6 +16,7 @@ The project uses below Software Engineering frameworks and open Chicago data sou
 ## Application Screens
 
 ### Affordable Housing Search
+![Affordable Housing Search](/WebApplication Screens/User_guide_image_6.png)
 
 ### Crime Data Search
 
